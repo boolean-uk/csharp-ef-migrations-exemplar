@@ -1,0 +1,39 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@port=0000
+###
+### IEnumerable<Author> GetAllAuthors();
+GET https://localhost:{{port}}/authors
+###
+GET https://localhost:{{port}}/books
+###
+GET https://localhost:{{port}}/authors/1
+### TODO
+GET https://localhost:{{port}}/books/1
+###
+POST https://localhost:{{port}}/author
+Content-Type: application/json
+{
+    Id:0  
+}
+###
+###
+POST https://localhost:{{port}}/book
+Content-Type: application/json
+{
+  Id:0  
+}
+
+
+
+###Author GetAuthor(int id);
+###bool AddAuthor(Author author);
+#bool UpdateAuthor(Author author);
+#bool DeleteAuthor(int id);
+
+
+### IEnumerable<Book> GetAllBooks()
+### Book GetBook(int id);
+### bool AddBook(Book book);
+### bool UpdateBook(Book book);
+### bool DeleteBook(int id);

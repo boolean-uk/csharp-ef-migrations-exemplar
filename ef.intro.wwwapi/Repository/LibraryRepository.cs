@@ -38,7 +38,6 @@ namespace ef.intro.wwwapi.Repository
                 db.SaveChanges();                
                 return true;
             };
-            return false;
         }
 
         public bool DeleteAuthor(int id)
@@ -50,7 +49,6 @@ namespace ef.intro.wwwapi.Repository
                 db.SaveChanges();
                 return true;
             };
-            return false;
         }
 
         public bool DeleteBook(int id)
@@ -62,7 +60,6 @@ namespace ef.intro.wwwapi.Repository
                 db.SaveChanges();
                 return true;
             };
-            return false;
         }
 
        
@@ -73,7 +70,6 @@ namespace ef.intro.wwwapi.Repository
             {
                 return db.Books.Include(a => a.Publisher).ToList();
             }
-            return null;
         }
 
         public Author GetAuthor(int id)
@@ -108,8 +104,7 @@ namespace ef.intro.wwwapi.Repository
                 item.Email = author.Email;
                 db.SaveChanges();
                 return true;
-            };
-            return false;
+            };            
         }
 
         public bool UpdateBook(Book book)
@@ -121,8 +116,7 @@ namespace ef.intro.wwwapi.Repository
                 item.AuthorId = book.AuthorId;
                 db.SaveChanges();
                 return true;
-            };
-            return false;
+            };            
         }
 
         public IEnumerable<Publisher> GetAllPublishers()
@@ -134,24 +128,48 @@ namespace ef.intro.wwwapi.Repository
 
         }
 
-        public Book GetPublisher(int id)
+        public Publisher GetPublisher(int id)
         {
-            throw new NotImplementedException();
+            Publisher result;
+            using (var db = new LibraryContext())
+            {
+                result = db.Publishers.Where(x => x.Id == id).FirstOrDefault();
+            };
+            return result;
         }
 
         public bool AddPublisher(Publisher publisher)
         {
-            throw new NotImplementedException();
+            using (var db = new LibraryContext())
+            {
+                db.Publishers.Add(publisher);
+                db.SaveChanges();
+                return true;
+            };
         }
 
         public bool UpdatePublisher(Publisher publisher)
         {
-            throw new NotImplementedException();
+            using (var db = new LibraryContext())
+            {
+                if (!db.Publishers.Any(x => x.Id == publisher.Id)) return false;
+
+                var item = db.Publishers.FirstOrDefault(x => x.Id == publisher.Id);
+                item.Name = publisher.Name;                
+                db.SaveChanges();
+                return true;
+            };
         }
 
         public bool DeletePublisher(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new LibraryContext())
+            {
+                var item = db.Publishers.Find(id);
+                db.Publishers.Remove(item);
+                db.SaveChanges();
+                return true;
+            };
         }
     }
 }

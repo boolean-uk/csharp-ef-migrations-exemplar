@@ -81,11 +81,11 @@ namespace ef.intro.wwwapi.Data
         };
         private static string GeneratePublisherName()
         {
-            string[] words = { "Blue", "Readable", "Flying", "Expensive", "Reflective", "Feathery", "Shiny", "Clean", "Brown Bagel", "Unlimited"};
+            string[] words = { "Blue", "Readable", "Flying", "Expensive", "Reflective", "Feathery", "Shiny", "Clean", "Brown Bagel", "Unlimited", "Green", "Bay Tree", "Field of Dreams", "Flying Comet", "Faster than a speeding bullet", "Heroic", "Static"};
 
 
             Random random = new Random();
-            bool flag = true;
+           
 
             return $"The {words[random.Next(words.Length)]} Publishing Company";
 

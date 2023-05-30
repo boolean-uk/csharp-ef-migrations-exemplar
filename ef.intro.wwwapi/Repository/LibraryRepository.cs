@@ -71,7 +71,7 @@ namespace ef.intro.wwwapi.Repository
         {
             using (var db = new LibraryContext())
             {
-                return db.Books.ToList();
+                return db.Books.Include(a => a.Publisher).ToList();
             }
             return null;
         }
@@ -91,7 +91,7 @@ namespace ef.intro.wwwapi.Repository
             Book result;
             using (var db = new LibraryContext())
             {
-                throw new NotImplementedException(); //TODO: Remove this line and add code              
+                result = db.Books.Where(x => x.Id == id).FirstOrDefault();     
             };
             return result;
         }
@@ -123,6 +123,35 @@ namespace ef.intro.wwwapi.Repository
                 return true;
             };
             return false;
+        }
+
+        public IEnumerable<Publisher> GetAllPublishers()
+        {
+            using (var db = new LibraryContext())
+            {
+                return db.Publishers.ToList();
+            };
+
+        }
+
+        public Book GetPublisher(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddPublisher(Publisher publisher)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdatePublisher(Publisher publisher)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeletePublisher(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

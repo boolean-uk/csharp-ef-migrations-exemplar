@@ -14,13 +14,13 @@ namespace ef.intro.wwwapi.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Author>()
-           .HasKey(m => new { m.Id });
+            modelBuilder.Entity<Author>().HasKey(m => new { m.Id });
+            modelBuilder.Entity<Book>().HasKey(m => new { m.Id });
 
         }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
 
-        //TODO:  add publisher DbSet Property
     }
 }

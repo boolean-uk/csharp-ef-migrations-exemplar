@@ -25,7 +25,7 @@ namespace ef.intro.wwwapi.Repository
         {            
             using (var db = new LibraryContext())
             {
-                return db.Authors.Include(a => a.Books).ToList();
+                return db.Authors.Include(a => a.Books).ThenInclude(b => b.Publisher).ToList();
             }
             return null;
         }

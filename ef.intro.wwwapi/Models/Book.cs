@@ -14,6 +14,7 @@ namespace ef.intro.wwwapi.Models
         [ForeignKey("Publisher")]
         public int PublisherId { get; set; }
         public Publisher Publisher { get; set; }
+        public DateTime? ReleaseDate { get; set; }
         
     }
 }

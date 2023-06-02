@@ -2,6 +2,7 @@
 using ef.intro.wwwapi.Models;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.EntityFrameworkCore;
 
 namespace ef.intro.wwwapi.Data
 {
@@ -94,8 +95,9 @@ namespace ef.intro.wwwapi.Data
         {
          
             
-            using (var db = new LibraryContext())
+            using (var db = new LibraryContext())            
             {
+                
                 Random authorRandom = new Random();                       
                 Random bookRandom = new Random();
                 Random publisherRandom = new Random();
@@ -141,6 +143,7 @@ namespace ef.intro.wwwapi.Data
                         book.Title = $"{FirstWord[bookRandom.Next(FirstWord.Count)]} {SecondWord[bookRandom.Next(SecondWord.Count)]} {ThirdWord[bookRandom.Next(ThirdWord.Count)]}";
                         book.AuthorId = authors[authorRandom.Next(authors.Count)].Id;
                         book.PublisherId = publishers[publisherRandom.Next(publishers.Count)].Id;
+                        book.ReleaseDate = DateTime.UtcNow; //postgres didn't like .Now ! need UtcNow
                         books.Add(book);
                     }
                     db.Books.AddRange(books);

@@ -1,16 +1,13 @@
 ﻿using ef.intro.wwwapi.Context;
 using ef.intro.wwwapi.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Runtime.CompilerServices;
 
 namespace ef.intro.wwwapi.Repository
 {
     public class LibraryRepository : ILibraryRepository
-    {
-        public LibraryRepository() 
-        { 
-        
-        }  
+    {       
         public bool AddAuthor(Author author)
         {
             using(var db = new LibraryContext())
@@ -39,7 +36,6 @@ namespace ef.intro.wwwapi.Repository
                 return true;
             };
         }
-
         public bool DeleteAuthor(int id)
         {
             using (var db = new LibraryContext())
